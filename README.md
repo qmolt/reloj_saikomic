@@ -27,7 +27,7 @@ Este programa está escrito en Java, hecho en [Processing](https://processing.or
 # Notas
 
 - Incluye un ejecutable compatible con Windows de modo que NO requiere instalar processing para compilar el programa pero es muy probable que necesites instalar una versión de Java.
-- Acá hay una versión que incluye la librería de Java y que no requiere instalar nada: [RELOJ (120MB)](https://drive.proton.me/urls/RTTH98XVPG#2STgi4AxlwyE)
+- Acá hay una versión que incluye la librería de Java y que no requiere instalar nada: [RELOJ (120MB)](https://drive.proton.me/urls/F3YWF1Y1TG#OvEPQrhVXYne)
 - Es posible editar cada una de las imagenes utilizadas: imagen de fondo, circulo con los números, horario, minutero y segundero. Disponibles en la carpeta ```...\data\```
 - Para poder modificar el reloj solo es necesario descargar Processing y editar el código del archivo ".pde". 
 - Ilustraciones y conceptos incluidos en las imagenes "bg.png", "icon.png" y "mseg.png" son propiedad intelectual de Saikomic.
