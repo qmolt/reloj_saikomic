@@ -16,6 +16,10 @@ let mseg_img;
 
 let zoom_mas;
 let zoom_menos;
+let zoom_a;
+let zoom_x1;
+let zoom_x2;
+let zoom_y;
 
 let a;
 let c;
@@ -43,19 +47,23 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(400, 400);
+	createCanvas(windowWidth, windowHeight);
+
+	zoom_a = 25;
+	zoom_x1 = 10;
+	zoom_x2 = 40;
+	zoom_y = 10;
+
+	a = min(400, width);
 
 	imageMode(CENTER);
 }
 
 function draw() {
-	background(220);
+	background(20);
 
 	s0 = second();
 	
-	a = min(width, height);
-	c = a/2;
-
  	let bg_img;
  	let mhor_img;
  	let mmin_img;
@@ -89,6 +97,8 @@ function draw() {
 	let m = map(minute() + norm(second(), 0, 60), 0, 60, 0, TWO_PI); 
   let h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI);
 
+	c = a/2;
+
 	//bg
   image(bg_img, c, c, a, a); 
   //circ
@@ -114,18 +124,20 @@ function draw() {
 	pop();
   
   //zoom
-  image(zoom_menos, 17.5, 17.5, 15, 15);
-  image(zoom_mas, 37.5, 17.5, 15, 15);
+  image(zoom_menos, zoom_x1+0.5*zoom_a, zoom_y+0.5*zoom_a, zoom_a, zoom_a);
+  image(zoom_mas, zoom_x2+0.5*zoom_a, zoom_y+0.5*zoom_a, zoom_a, zoom_a);
 }
   
 function mousePressed(){
-  if((mouseX > 10) && (mouseX < 25) && (mouseY > 10) && (mouseY < 25)){
-  	resizeCanvas(width * 0.9, height * 0.9);
+  if((mouseX > zoom_x1) && (mouseX < zoom_x1+zoom_a) && (mouseY > zoom_y) && (mouseY < zoom_y+zoom_a)){
+  	a = max(225, 0.9*a);
   }
-  else if((mouseX > 30) && (mouseX < 45) && (mouseY > 10) && (mouseY < 25)){
-  	resizeCanvas(width * 1.1, height * 1.1);
+  else if((mouseX > zoom_x2) && (mouseX < zoom_x2+zoom_a) && (mouseY > zoom_y) && (mouseY < zoom_y+zoom_a)){
+  	a *= 1.1;
   }
   else{
   	bg_mode = (bg_mode + 1) % 3; //2 modes in total
 	}
+
+	resizeCanvas(width, height);
 }
