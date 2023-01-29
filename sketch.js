@@ -114,8 +114,8 @@ function draw() {
 	pop();
   
   //zoom
-  image(zoom_menos, 17.5, 17.5, 15, 15);
-  image(zoom_mas, 37.5, 17.5, 15, 15);
+  image(zoom_menos, 17.5, 17.5, 30, 30);
+  image(zoom_mas, 67.5, 17.5, 30, 30);
 }
   
 function mousePressed(){
