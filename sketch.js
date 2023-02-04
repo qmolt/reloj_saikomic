@@ -14,12 +14,9 @@ let mhor_img;
 let mmin_img;
 let mseg_img;
 
-let zoom_mas;
-let zoom_menos;
-let zoom_a;
-let zoom_x1;
-let zoom_x2;
-let zoom_y;
+let zoom_mas_b;
+let zoom_menos_b;
+let cnv;
 
 let a;
 let c;
@@ -41,20 +38,23 @@ function preload() {
 	mseg0_img = loadImage('assets/mseg0.png');
 	mseg1_img = loadImage('assets/mseg1.png');
 	mseg2_img = loadImage('assets/mseg2.png');
-
-	zoom_mas = loadImage('assets/zoommas.png')
-	zoom_menos = loadImage('assets/zoommenos.png')
 }
 
 function setup() {
-	createCanvas(windowWidth, windowHeight);
+	a = 400;
 
-	zoom_a = 25;
-	zoom_x1 = 10;
-	zoom_x2 = 40;
-	zoom_y = 10;
+	cnv = createCanvas(400, 400);
+	cnv.mousePressed(changeBackground);
 
-	a = min(400, width);
+  zoom_mas_b = createImg('assets/zoommas.png',"");
+  zoom_mas_b.position(40, 10);
+  zoom_mas_b.size(25,25);
+  zoom_mas_b.mousePressed(zoomIn);
+
+  zoom_menos_b = createImg('assets/zoommenos.png',"");
+  zoom_menos_b.position(10, 10);
+  zoom_menos_b.size(25,25);
+  zoom_menos_b.mousePressed(zoomOut);
 
 	imageMode(CENTER);
 }
@@ -122,22 +122,17 @@ function draw() {
 	rotate(s);
 	image(mseg_img, 0, 0, a, a);
 	pop();
-  
-  //zoom
-  image(zoom_menos, zoom_x1+0.5*zoom_a, zoom_y+0.5*zoom_a, zoom_a, zoom_a);
-  image(zoom_mas, zoom_x2+0.5*zoom_a, zoom_y+0.5*zoom_a, zoom_a, zoom_a);
 }
-  
-function mousePressed(){
-  if((mouseX > zoom_x1) && (mouseX < zoom_x1+zoom_a) && (mouseY > zoom_y) && (mouseY < zoom_y+zoom_a)){
-  	a = max(225, 0.9*a);
-  }
-  else if((mouseX > zoom_x2) && (mouseX < zoom_x2+zoom_a) && (mouseY > zoom_y) && (mouseY < zoom_y+zoom_a)){
-  	a *= 1.1;
-  }
-  else{
-  	bg_mode = (bg_mode + 1) % 3; //2 modes in total
-	}
-
-	resizeCanvas(width, height);
+ 
+function zoomIn(){
+	a *= 1.1;
+	resizeCanvas(a, a);
+}  
+function zoomOut(){
+	a = max(212, 0.9*a);
+	resizeCanvas(a, a);
+}
+function changeBackground(){
+	bg_mode = (bg_mode + 1) % 3;
+	resizeCanvas(a, a);
 }
